@@ -24,6 +24,7 @@ $(function() {
         serverSide: true,
         autoWidth: false,
         responsive: true,
+        //Traduccion a español de la interfaz de la tabla
         language: {
             "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",

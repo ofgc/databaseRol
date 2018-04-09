@@ -78,6 +78,7 @@ return [
     |
     */
 
+    //Cambiado aquí de 'en' a 'es' para cambiar la dirección predeterminada en la que laravel buscara el lenguaje de la aplicación. 
     'locale' => 'es',
 
     /*
