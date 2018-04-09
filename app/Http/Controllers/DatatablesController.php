@@ -28,13 +28,15 @@ class DatatablesController extends Controller
 	{
 	    return Datatables::of(User::query())
 											->addColumn('action', function ($user) {
-											                return '<a href="#edit-'.$user->id.'" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> </a>
-											                		<a href="#edit-'.$user->id.'" class="btn btn-xs btn-primary"><i class="fa fa-expeditedssl"></i> </a>'
+											                return '<a href="#edit-'.$user->id.'" class="alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
 											                		;
 											            })
 			    							->setRowClass(function ($user) {
 									                return $user->id % 2 == 0 ? '' : 'table-active';
 									            })
+			    							->setRowAttr([
+									                'color' => 'red',
+									            ])	
 	    									->make(true);
 	}
 

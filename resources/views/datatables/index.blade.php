@@ -3,7 +3,7 @@
 @section('content')
     <table class="table table-bordered" id="users-table">
         <thead >
-            <tr class="table-primary">
+            <tr class="table-primary alineado_centro">
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Email</th>
@@ -22,6 +22,8 @@ $(function() {
     $('#users-table').DataTable({
         processing: true,
         serverSide: true,
+        autoWidth: false,
+        responsive: true,
         ajax: '{!! route('usuarios') !!}',
         columns: [
             { data: 'id', name: 'id' },
@@ -29,7 +31,7 @@ $(function() {
             { data: 'email', name: 'email' },
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' },
-            {data: 'action', name: 'action', orderable: false, searchable: false}
+            { data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });
 });

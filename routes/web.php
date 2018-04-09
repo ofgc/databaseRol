@@ -16,17 +16,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+	
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('datatables', 'DatatablesController@index');
 /*
 Route::resource('datatables', 'DatatablesController', [
-    'data'  => 'datatables.data',
+    'data'  => 'datatables.data' ,
     'index' => 'datatables.index',
 ]);
 */
 
 //Route::get('/datatablesindex', 'DatatablesController@index' );
 //Route::get('/datatables', 'DatatablesController@data' ) -> name ('cosa');
-Route::get('/datatablesindex', 'DatatablesController@index');
-Route::get('/datatables', 'DatatablesController@getDatos' ) -> name ('usuarios');
+Route::get('/datatables', 'DatatablesController@index');
+Route::get('/datatablesdata', 'DatatablesController@getDatos' ) -> name ('usuarios');
