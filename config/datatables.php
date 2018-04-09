@@ -22,6 +22,8 @@ return [
          */
         'case_insensitive' => true,
 
+
+
         /*
          * Wild card will add "%" in between every characters of the keyword.
          * SQL: column LIKE "%k%e%y%w%o%r%d%"
@@ -34,6 +36,7 @@ return [
      */
     'index_column' => 'DT_Row_Index',
 
+    
     /*
      * List of available builders for DataTables.
      * This is where you can register your custom dataTables builder.
@@ -70,6 +73,7 @@ return [
      * 'custom message' - Any friendly message to be displayed to the user. You can also use translation key.
      */
     'error' => env('DATATABLES_ERROR', null),
+
 
     /*
      * Default columns definition of dataTable utility functions.
