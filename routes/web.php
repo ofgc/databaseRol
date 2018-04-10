@@ -30,3 +30,4 @@ Route::resource('datatables', 'DatatablesController', [
 //Route::get('/datatables', 'DatatablesController@data' ) -> name ('cosa');
 Route::get('/datatables', 'DatatablesController@index');
 Route::get('/datatablesdata', 'DatatablesController@getDatos' ) -> name ('usuarios');
+Route::delete('/eliminar-usuario/{id}','DatatablesController@deleteRow')->name('borrarUser');

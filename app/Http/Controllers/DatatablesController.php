@@ -27,18 +27,39 @@ class DatatablesController extends Controller
 	public function getDatos()
 	{
 	    return Datatables::of(User::query())
-											->addColumn('action', function ($user) {
-											                return '<a href="#edit-'.$user->id.'" class="alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
-											                		;
-											            })
-			    							->setRowClass(function ($user) {
-									                return $user->id % 2 == 0 ? '' : 'table-active';
-									            })
-			    							->setRowAttr([
-									                'color' => 'red',
-									            ])	
-	    									->make(true);
+			->addColumn('action', function ($user) {
+			                return '<a id="'.$user->id.'"href="#edit-'.$user->id.'" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
+			                		;
+			            })
+			->setRowClass(function ($user) {
+			         return $user->id % 2 == 0 ? '' : 'table-active';
+			     })
+			->setRowAttr([
+			         'color' => 'red',
+			     ])	
+	    	->make(true);
+	}
+	public function deleteRow(Request $request, $id)
+	{
+		if($request->ajax()){
+			$user = User::find($id);
+			$user->delete();
+			$user_total = User::all()->count();
+
+			return response()->json([
+				'total'=> $user_total,
+				'message'=> $user->name . '  fue eliminado correctamente'
+			]);
+		}
 	}
 
-
 }
+/*
+return 
+	{!! Form::open(['route' => ['borrarUser',$user->id], 'method' => 'delete']) !!}
+	"<a href='#edit-'".$user->id." class='btn-delete alineado_imagen_centro'>"
+		<i class='fa fa-trash'></i> 
+	</a>
+	{!! Form::close() !!}
+;
+*/

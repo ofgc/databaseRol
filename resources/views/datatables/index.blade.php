@@ -13,7 +13,18 @@
 
             </tr>
         </thead>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="non_searchable"></td>
+            </tr>
+        </tfoot>
     </table>
+    <div id="alert" class="alert alert-info"></div>
 @stop
 
 @push('scripts')
@@ -57,8 +68,28 @@ $(function() {
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' },
             { data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
+        ],
+        initComplete: function () {
+            this.api().columns().every(function () {
+                var column = this;
+                var columnClass = column.footer().className;
+                if(columnClass != 'non_searchable'){
+                    var input = document.createElement("input");
+                    $(input).appendTo($(column.footer()).empty())
+                    .on('keyup', function () {
+                        column.search($(this).val(), false, false, true).draw();
+                    });
+                }
+            });
+            /*$(".btn-delete").click(function(){
+                var idRow = this.id;
+                ajax:'{!! route('borrarUser', idRow) !!}',
+                var row = $(this).parents('tr'),
+                row.fadeout(); 
+            });*/
+        }
     });
 });
+
 </script>
 @endpush
