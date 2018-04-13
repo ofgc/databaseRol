@@ -30,7 +30,7 @@ class DatatablesController extends Controller
 			->addColumn('action', function ($user) {
 				
 			                return '
-			                	<a  href="'. route('borrarUser',['id'=>$user->id]) .'" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
+			                	<a  id='.$user->id.' href="'. route('borrarUser',['id'=>$user->id]) .'" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
 			                		;			                
 			            })
 			->setRowClass(function ($user) {

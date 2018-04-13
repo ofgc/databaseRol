@@ -111,19 +111,20 @@ $(function() {
             $(".btn-delete").click(function(e){
                 e.preventDefault();
                                       
-                var idRow = this.id;
+                var idRow = $(this).attr('id');
+                var row = $(this).parents('tr');
                 $('#alert').show();
+                
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type:"POST",
-                    data:{'idRow':1},
+                    data:{'idRow':idRow},
                     dataType:"JSON",
                     url:"{!! route('borrarUser' ) !!}",
 
                         success:function(data){
-                            var row = $(this).parents('tr');
                             row.fadeOut(); 
                             $('#alert').html(data.message);
                         }
