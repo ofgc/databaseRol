@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <table class="table table-bordered" id="users-table">
+    <table class="table table-bordered table-striped" id="users-table">
         <thead >
             <tr class="table-primary alineado_centro">
                 <th>Id</th>
@@ -31,6 +31,7 @@
 <script>
 $(function() {
     $('#users-table').DataTable({
+
         processing: true,
         serverSide: true,
         autoWidth: false,
@@ -70,6 +71,8 @@ $(function() {
             { data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         initComplete: function () {
+
+            $('#alert').hide();
             this.api().columns().every(function () {
                 var column = this;
                 var columnClass = column.footer().className;
@@ -81,12 +84,75 @@ $(function() {
                     });
                 }
             });
-            /*$(".btn-delete").click(function(){
+
+
+            // $(".btn-delete").click(function(e){
+
+            //     e.preventDefault();
+            //     if( ! confirm("¿esta seguro de eliminar al usuario?")){
+            //         return false;
+            //     }
+
+            //     $('#alert').show();
+
+            //     var row = $(this).parents('tr');
+            //     var url = $(this).attr('href');
+            //     var id = $(this).attr('id');
+
+            //     $.post(url,id, function(result){
+            //         row.fadeOut();
+            //         $('#alert').html('usuario eliminado correctamente');
+            //     }).fail(function(){
+            //         $('#alert').html('Algo salio mal');
+            //     })
+            // })
+                        ///////////////////////////
+
+            $(".btn-delete").click(function(e){
+                e.preventDefault();
+                                      
                 var idRow = this.id;
-                ajax:'{!! route('borrarUser', idRow) !!}',
-                var row = $(this).parents('tr'),
-                row.fadeout(); 
-            });*/
+                $('#alert').show();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type:"POST",
+                    data:{'idRow':1},
+                    dataType:"JSON",
+                    url:"{!! route('borrarUser' ) !!}",
+
+                        success:function(data){
+                            var row = $(this).parents('tr');
+                            row.fadeOut(); 
+                            $('#alert').html(data.message);
+                        }
+                    })
+                })
+
+                        /////////////////////////
+
+            // $('.btn-delete').click(function(e){
+            //     e.preventDefault();
+                
+                
+            //     if(! confirm("¿Esta seguro de eleminar el usuario?")){
+            //         return false;
+            //     }
+            //     var url = $(this).attr('href');
+            //     var row = $(this).parents('tr');
+            //     var idRow = $(this).attr('id');
+            //     console.log(idRow);
+            //     console.log(url);
+            //     $('#alert').show();
+
+            //     $.post(url, $(this).serialize(), function(result){
+            //         row.fadeOut();
+            //         $('#alert').html(result.message);
+            //     }).fail(function(){
+            //         $('#alert').html('Algo salio mal');
+            //     });
+            // });
         }
     });
 });

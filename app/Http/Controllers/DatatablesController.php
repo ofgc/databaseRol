@@ -16,7 +16,7 @@ class DatatablesController extends Controller
 
 	public function index()
 	{
-	    return view('datatables.index');
+		return view('datatables.index');
 	}
 
 	/**
@@ -25,24 +25,28 @@ class DatatablesController extends Controller
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function getDatos()
-	{
+	{	
 	    return Datatables::of(User::query())
 			->addColumn('action', function ($user) {
-			                return '<a id="'.$user->id.'"href="#edit-'.$user->id.'" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
-			                		;
+				
+			                return '
+			                	<a  href="'. route('borrarUser',['id'=>$user->id]) .'" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
+			                		;			                
 			            })
 			->setRowClass(function ($user) {
-			         return $user->id % 2 == 0 ? '' : 'table-active';
+			         //return $user->id % 2 == 0 ? '' : 'table-active';
+					 //return 'table-striped';
 			     })
 			->setRowAttr([
 			         'color' => 'red',
 			     ])	
 	    	->make(true);
 	}
-	public function deleteRow(Request $request, $id)
+	public function deleteRow(Request $request)
 	{
 		if($request->ajax()){
-			$user = User::find($id);
+			$idRow=$request->input('idRow');
+			$user = User::find($idRow);
 			$user->delete();
 			$user_total = User::all()->count();
 
@@ -50,7 +54,7 @@ class DatatablesController extends Controller
 				'total'=> $user_total,
 				'message'=> $user->name . '  fue eliminado correctamente'
 			]);
-		}
+		}else return "esto no es ajax";
 	}
 
 }
