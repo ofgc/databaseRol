@@ -30,23 +30,24 @@ class DatatablesController extends Controller
 			->addColumn('action', function ($user) {
 				
 			                return '
-			                	<a  id='.$user->id.' href="'. route('borrarUser',['id'=>$user->id]) .'" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>'
-			                		;			                
+			                	<a  id-delete='.$user->id.' href="#" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>
+			                	<a  id-edit='.$user->id.' href="#" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>
+			                		';			                
 			            })
 			->setRowClass(function ($user) {
 			         //return $user->id % 2 == 0 ? '' : 'table-active';
 					 //return 'table-striped';
 			     })
 			->setRowAttr([
-			         'color' => 'red',
+			         
 			     ])	
 	    	->make(true);
 	}
 	public function deleteRow(Request $request)
 	{
 		if($request->ajax()){
-			$idRow=$request->input('idRow');
-			$user = User::find($idRow);
+			$idUser=$request->input('idUser');
+			$user = User::find($idUser);
 			$user->delete();
 			$user_total = User::all()->count();
 
