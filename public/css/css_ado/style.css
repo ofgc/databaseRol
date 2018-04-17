@@ -3,6 +3,6 @@
 }
 
 .alineado_imagen_centro{
-	display:block;
-	text-align:center;
+	display:inline-block;
+	margin-left:18%;
 }
