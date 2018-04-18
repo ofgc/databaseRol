@@ -5,12 +5,12 @@
         <table class="table table-bordered table-striped" id="users-table">
             <thead >
                 <tr class="table-primary alineado_centro">
-                    <th>Id</th>
-                    <th>Nombre</th>
+                    <th class="all">Id</th>
+                    <th class="all">Nombre</th>
                     <th>Email</th>
                     <th>Creado</th>
                     <th>Modificado</th>
-                    <th>Acciones</th>
+                    <th class="all">Acciones</th>
 
                 </tr>
             </thead>

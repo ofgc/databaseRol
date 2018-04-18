@@ -29,14 +29,14 @@ $(document).ready(function(){
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         },
-        ajax: '/datatablesdata',
+        ajax: 'datatablesdata',
         columns: [
-            { data: 'id', name: 'id', },
-            { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' },
-            { data: 'action', name: 'action', orderable: false, searchable: false}
+            { data: 'id', name: 'id',  responsivePriority: 1, orderable: false, searchable: false },
+            { data: 'name', name: 'name', responsivePriority: 2 },
+            { data: 'email', name: 'email', responsivePriority: 3 },
+            { data: 'created_at', name: 'created_at', responsivePriority: 5, orderable: true, searchable: false },
+            { data: 'updated_at', name: 'updated_at', responsivePriority: 6, orderable: true, searchable: false },
+            { data: 'action', name: 'action',responsivePriority: 4, orderable: false, searchable: false}
         ],
         
         initComplete: function () {
@@ -61,7 +61,8 @@ $(document).ready(function(){
         
         $(".btn-delete").click(function(e){
             e.preventDefault();
-                                  
+                               
+            if( ! confirm("¿Estas seguro de eliminar el usuario?"))return false;   
             var idUser = $(this).attr('id-delete');
             var row = $(this).parents('tr');
             $('#alert').show();
@@ -74,7 +75,7 @@ $(document).ready(function(){
                 type:"POST",
                 data:{'idUser':idUser},
                 dataType:"JSON",
-                url:'/eliminar-usuario',
+                url:'eliminar-usuario',
 
                 success:function(data){
                     row.fadeOut(); 

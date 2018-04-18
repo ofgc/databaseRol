@@ -6,3 +6,6 @@
 	display:inline-block;
 	margin-left:18%;
 }
+table tfoot {
+display: table-header-group;
+}

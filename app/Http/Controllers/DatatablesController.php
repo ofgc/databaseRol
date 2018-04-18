@@ -34,13 +34,6 @@ class DatatablesController extends Controller
 			                	<a  id-edit='.$user->id.' href="#" class="btn-delete alineado_imagen_centro"><i class="fa fa-trash"></i> </a>
 			                		';			                
 			            })
-			->setRowClass(function ($user) {
-			         //return $user->id % 2 == 0 ? '' : 'table-active';
-					 //return 'table-striped';
-			     })
-			->setRowAttr([
-			         
-			     ])	
 	    	->make(true);
 	}
 	public function deleteRow(Request $request)
@@ -59,12 +52,3 @@ class DatatablesController extends Controller
 	}
 
 }
-/*
-return 
-	{!! Form::open(['route' => ['borrarUser',$user->id], 'method' => 'delete']) !!}
-	"<a href='#edit-'".$user->id." class='btn-delete alineado_imagen_centro'>"
-		<i class='fa fa-trash'></i> 
-	</a>
-	{!! Form::close() !!}
-;
-*/

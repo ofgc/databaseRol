@@ -32,7 +32,7 @@
         <!-- jQuery -->
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- DataTables -->
-        <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        {{-- <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> --}}
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.0.0/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
 
         <script src="js/js_ado/script.js"></script>
